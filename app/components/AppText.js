@@ -3,16 +3,16 @@ import { StyleSheet, Text, View, Platform } from 'react-native'
 
 //this file is created for the consistency of text across whole the program so we don't have to rewrite styles all over again
 
- function Apptext({children}) {
+ function Apptext({children,style}) {
     return (
-            <Text style={styles.text}>{children}</Text>       // this is necessary when directly modifying a custom property
+            <Text style={[styles.text,style]}>{children}</Text>       // this is necessary when directly modifying a custom property
     
     )
 }
 
 const styles = StyleSheet.create({
     text:{
-        color:"tomato",
+        color:"#000",
             ...Platform.select({          //select method returns an object so we have to extend by using three dots by spreading the objects
                 ios:{
                     fontFamily:'Avenir',
