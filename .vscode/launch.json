@@ -4,11 +4,10 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
-            "name": "Debug Android",
+            "name": "Debug Android (Preview)",
             "cwd": "${workspaceFolder}",
-            "type": "reactnative",
+            "type": "reactnative-preview",
             "request": "launch",
             "platform": "android"
         },

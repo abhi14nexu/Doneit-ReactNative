@@ -4,10 +4,10 @@ import { StyleSheet, Text, View,Image } from 'react-native'
 import Apptext from "../components/AppText";
 
 
-export default function ListItem({title,subtitle,image }) {
+export default function ListItem({ title,subtitle }) {
     return (
         <View style={styles.container}>
-            <Image style={styles.image}source={{uri:image}} />
+            {/* <Image style={styles.image} source={image} /> */}
             <View>
            {/* //one view for row and another one for colum horizonal and then vertical */}
     <Apptext>{title}</Apptext>
