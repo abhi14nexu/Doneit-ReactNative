@@ -8,20 +8,74 @@ import {
   TouchableWithoutFeedback,
   Modal,
   Button,
-  TouchableHighlight
+  TouchableHighlight,
+  Fragment,
+  Alert
 } from "react-native";
+import { Formik } from "formik";
 import { Entypo } from "@expo/vector-icons";
+import * as yup from "yup";
+
 export default function App() {
   const [firstname, setfirstname] = useState("");
-  return(
-  <View></View>
-  )
-
-
+  return (
+    <View style={{ alignItems: "center", top: 200 }}>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        onSubmit={values => Alert.alert(JSON.stringify(values))}
+        validationSchema={yup.object().shape({
+          email: yup
+            .string()
+            .email()
+            .required(),
+          password: yup
+            .string()
+            .min(6)
+            .required(),
+        })}
+      >
+        {({
+          errors,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          setFieldTouched,
+          touched,
+          isValid,
+        }) => (
+          <View>
+            <TextInput
+              onChangeText={handleChange("email")}
+              onBlur={() => setFieldTouched("email")}
+              value={values.email}
+              keyboardType="email-address"
+              placeholder="Email Address"
+            />
+            {touched.email && errors.email && (
+              <Text style={{ fontSize: 10, color: "red" }}>{errors.email}</Text>
+            )}
+            <TextInput
+              onChangeText={handleChange("password")}
+              onBlur={() => setFieldTouched("password")}
+              value={values.password}
+              placeholder="password here"
+              keyboardAppearance="default"
+              secureTextEntry={true}
+            />
+            {touched.password && errors.password && (
+              <Text style={{ fontSize: 10, color: "red" }}>
+                {errors.password}
+              </Text>
+            )}
+            <Button onPress={handleSubmit} disabled={!isValid} title="Submit" />
+          </View>
+        )}
+      </Formik>
+    </View>
+  );
 }
-const styles = StyleSheet.create({
-  
-})
+const styles = StyleSheet.create({});
 // import React from 'react'
 // import { StyleSheet, Text, View } from 'react-native'
 
@@ -45,7 +99,7 @@ const styles = StyleSheet.create({
 //       maxLength={10}
 //       clearButtonMode="always"
 
-// />
+// />kjl
 // <Text>{firstname}</Text>
 // </View>
 
